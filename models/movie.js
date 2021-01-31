@@ -82,7 +82,18 @@ const movieSchema = new mongoose.Schema({
         type: String
       }
     }
-  }
+  },
+  cast: [
+    {
+      person: {
+        type: mongoose.Types.ObjectId,
+        ref: 'Person'
+      },
+      role: {
+        type: String
+      }
+    }
+  ]
 })
 
 module.exports = mongoose.model('Movie', movieSchema)
