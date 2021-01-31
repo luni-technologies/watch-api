@@ -1,0 +1,20 @@
+{
+  "name": "luni-watch-api",
+  "version": "1.0.0",
+  "description": "The API for the best free streaming service",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "nodemon main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luni-technologies/watch-api.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luni-technologies/watch-api/issues"
+  },
+  "homepage": "https://github.com/luni-technologies/watch-api#readme"
+}
