@@ -72,18 +72,7 @@ const movieSchema = new mongoose.Schema({
         type: String
       },
       cameras: [String],
-      lens: [String],
-      runtime: {
-        type: String
-      },
-      laboratories: [String],
-      negative: {
-        type: String
-      },
-      processes: [String],
-      printed: {
-        type: String
-      }
+      lenses: [String],
     }
   },
   cast: [
