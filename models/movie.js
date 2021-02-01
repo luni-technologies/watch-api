@@ -4,6 +4,9 @@ const movieSchema = new mongoose.Schema({
   publicid: {
     type: String
   },
+  url: {
+    type: String
+  },
   meta: {
     title: {
       main: {
