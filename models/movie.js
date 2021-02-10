@@ -10,57 +10,31 @@ const movieSchema = new mongoose.Schema({
     unique: true
   },
   availability: {
-    date: {
-      type: Date
-    },
-    bool: {
-      type: Boolean
-    }
+    date: Date,
+    bool: Boolean
   },
   meta: {
     title: {
-      main: {
-        type: String
-      },
+      main: String,
       alternatives: [String]
     },
-    plot: {
-      type: String
-    },
-    storyline: {
-      type: String
-    },
+    plot: String,
+    storyline: String,
     ratings: {
       imdb: {
-        number: {
-          type: String
-        },
-        url: {
-          type: String
-        }
+        number: Number,
+        url: String
       },
       rotten: {
-        number: {
-          type: String
-        },
-        url: {
-          type: String
-        }
+        number: Number,
+        url: String
       }
     },
     released: {
-      day: {
-        type: String
-      },
-      month_num: {
-        type: String
-      },
-      month: {
-        type: String
-      },
-      year: {
-        type: String
-      }
+      day: Number,
+      month_num: Number,
+      month: String,
+      year: Number
     },
     genres: [
       {
@@ -75,12 +49,8 @@ const movieSchema = new mongoose.Schema({
     keywords: [String],
     technical: {
       sound_mix: [String],
-      color: {
-        type: String
-      },
-      aspect_ratio: {
-        type: String
-      },
+      color: String,
+      aspect_ratio: String,
       cameras: [String],
       lenses: [String],
     }
@@ -91,9 +61,7 @@ const movieSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: 'Person'
       },
-      role: {
-        type: String
-      }
+      role: String
     }
   ]
 })

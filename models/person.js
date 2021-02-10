@@ -1,35 +1,21 @@
 const mongoose = require('mongoose')
 
 const personSchema = new mongoose.Schema({
-  publicid: {
-    type: String
-  },
-  url: {
-    type: String
-  },
+  publicid: String,
+  url: String,
   meta: {
-    name: {
-      type: String
-    },
+    name: String,
     bio: {
-      text: {
-        type: String
-      },
+      text: String,
       source: {
-        url: {
-          type: String
-        },
-        text: {
-          type: String
-        }
+        url: String,
+        text: String
       }
     }
   },
   content: [
     {
-      title: {
-        type: String
-      },
+      title: String,
       movies: [
         {
           type: mongoose.Types.ObjectId,

@@ -1,32 +1,18 @@
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
-  publicid: {
-    type: String
-  },
+  publicid: String,
   info: {
-    name: {
-      type: String
-    },
-    email: {
-      type: String
-    },
-    username: {
-      type: String
-    },
+    name: String,
+    email: String,
+    username: String,
     age: {
-      born_on: {
-        type: Date
-      }
+      born_on: Date
     },
-    joined_at: {
-      type: Date
-    }
+    joined_at: Date
   },
   auth: {
-    password: {
-      type: String
-    }
+    password: String
   },
   content: {
     watching: [
@@ -35,9 +21,7 @@ const userSchema = new mongoose.Schema({
           type: mongoose.Types.ObjectId,
           ref: 'Movie'
         },
-        time: {
-          type: Number
-        }
+        time: Number
       }
     ],
     watch_history: [
@@ -46,9 +30,7 @@ const userSchema = new mongoose.Schema({
           type: mongoose.Types.ObjectId,
           ref: 'Movie'
         },
-        at: {
-          type: Date
-        }
+        at: Date
       }
     ],
     watched: [
@@ -57,9 +39,7 @@ const userSchema = new mongoose.Schema({
           type: mongoose.Types.ObjectId,
           ref: 'Movie'
         },
-        at: {
-          type: Date
-        }
+        at: Date
       }
     ],
     ratings: [
@@ -68,9 +48,7 @@ const userSchema = new mongoose.Schema({
           type: mongoose.Types.ObjectId,
           ref: 'Movie'
         },
-        value: {
-          type: Number
-        }
+        value: Number
       }
     ],
   },
@@ -81,16 +59,12 @@ const userSchema = new mongoose.Schema({
           type: mongoose.Types.ObjectId,
           ref: 'User'
         },
-        since: {
-          type: Date
-        }
+        since: Date
       }
     ]
   },
   prefs: {
-    subtitle: {
-      type: String
-    }
+    subtitle: String
   }
 })
 

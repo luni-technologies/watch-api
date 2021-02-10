@@ -1,47 +1,26 @@
 const mongoose = require('mongoose')
 
 const manifestSchema = new mongoose.Schema({
-  publicid: {
-    type: String
-  },
-  media_type: {
-    type: String
-  },
-  mediaTitle: {
-    type: String
-  },
+  publicid: String,
+  media_type: String,
+  mediaTitle: String,
   video: {
-    src: {
-      type: String
-    },
-    lang: {
-      type: String
-    },
+    src: String,
+    lang: String,
     skips: [
       {
-        from: {
-          type: Number
-        },
-        to: {
-          type: Number
-        }
+        from: Number,
+        to: Number,
+        title: String
       }
     ],
-    end: {
-      type: Number
-    }
+    end: Number
   },
   subtitles: [
     {
-      src: {
-        type: String
-      },
-      lang: {
-        type: String
-      },
-      langid: {
-        type: String
-      }
+      src: String,
+      lang: String,
+      langid: String
     }
   ]
 })
