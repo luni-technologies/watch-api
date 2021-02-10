@@ -9,6 +9,14 @@ const movieSchema = new mongoose.Schema({
     type: String,
     unique: true
   },
+  availability: {
+    date: {
+      type: Date
+    },
+    bool: {
+      type: Boolean
+    }
+  },
   meta: {
     title: {
       main: {
