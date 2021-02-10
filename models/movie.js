@@ -2,10 +2,12 @@ const mongoose = require('mongoose')
 
 const movieSchema = new mongoose.Schema({
   publicid: {
-    type: String
+    type: String,
+    unique: true
   },
   url: {
-    type: String
+    type: String,
+    unique: true
   },
   meta: {
     title: {
