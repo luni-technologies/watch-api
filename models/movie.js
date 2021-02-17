@@ -43,6 +43,7 @@ const movieSchema = new mongoose.Schema({
       aspect_ratio: String,
       cameras: [String],
       lenses: [String],
+      runtime: Number
     }
   },
   cast: [
