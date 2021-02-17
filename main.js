@@ -22,6 +22,7 @@ app.get('/', (req, res) => {
   res.send('Hello world')
 })
 
+app.use('/api/auth', require('./routers/auth'))
 app.use('/api/movie', require('./routers/movie'))
 
 app.listen(8080, () => {
