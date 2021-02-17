@@ -30,12 +30,7 @@ const movieSchema = new mongoose.Schema({
         url: String
       }
     },
-    released: {
-      day: Number,
-      month_num: Number,
-      month: String,
-      year: Number
-    },
+    released: Date,
     genres: [String],
     age_rating: {
       number: Number,
