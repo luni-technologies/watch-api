@@ -6,7 +6,7 @@ const User = require('../models/user')
 
 router.post('/register', (req, res) => {
   User.findOne({$or: [{'info.email': req.body.email},{'info.username': req.body.username}]}, (err, doc) => {
-    if (doc) return res.json({url: req.url, status: 'error', msg: 'Email already registered'})
+    if (doc) return res.json({url: req.url, status: 'error', msg: 'Email or username already registered'})
     let userObj = {
       publicid: uuid.v4(),
       info: {
@@ -48,5 +48,7 @@ router.post('/register', (req, res) => {
     })
   })
 })
+
+
 
 module.exports = router
