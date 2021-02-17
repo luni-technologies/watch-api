@@ -23,13 +23,4 @@ router.get('/findByUrl/:url', (req, res) => {
     })
 })
 
-router.post('/create', (req, res) => {
-  let movieContent = JSON.parse(req.body.content)
-  let movieDocument = new Movie(movieContent)
-  movieDocument.save().then(savedDocument => {
-    let respJSON = {url: req.url, status: 'success', msg: 'Successfully created a movie', movie:savedDocument}
-    res.json(respJSON)
-  })
-})
-
 module.exports = router
