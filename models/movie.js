@@ -44,7 +44,7 @@ const movieSchema = new mongoose.Schema({
     ],
     age_rating: {
       type: mongoose.Types.ObjectId,
-      ref: 'Rating'
+      ref: 'Age Rating'
     },
     keywords: [String],
     technical: {
