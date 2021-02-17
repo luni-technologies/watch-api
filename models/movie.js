@@ -36,15 +36,10 @@ const movieSchema = new mongoose.Schema({
       month: String,
       year: Number
     },
-    genres: [
-      {
-        type: mongoose.Types.ObjectId,
-        ref: 'Genre'
-      }
-    ],
+    genres: [String],
     age_rating: {
-      type: mongoose.Types.ObjectId,
-      ref: 'Age Rating'
+      number: Number,
+      for: [String]
     },
     keywords: [String],
     technical: {
