@@ -7,7 +7,9 @@ require('dotenv').config()
 
 mongoose.connect(process.env.MONGO_URL.replace('USER', process.env.MONGO_USER).replace('PASS', process.env.MONGO_PASS), {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false
 }, err => {
   if (err) return console.log('ERROR: ', err)
   console.log('Connected to database...')
