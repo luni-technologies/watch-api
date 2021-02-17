@@ -4,6 +4,7 @@ const ageRatingSchema = new mongoose.Schema({
   publicid: String,
   url: String,
   meta: {
+    symbol: String,
     title: String,
     meaning: String
   },
