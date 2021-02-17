@@ -13,7 +13,7 @@ mongoose.connect(process.env.MONGO_URL.replace('USER', process.env.MONGO_USER).r
   console.log('Connected to database...')
 })
 
-const Movie = require('./models/movie')
+const verifyToken = require('./middleware/verifyToken')
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/auth', require('./routers/auth'))
-app.use('/api/movie', require('./routers/movie'))
+app.use('/api/movie', verifyToken, require('./routers/movie'))
 
 app.listen(8080, () => {
   console.log('API is listening on PORT 8080...')
