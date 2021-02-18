@@ -15,13 +15,8 @@ const personSchema = new mongoose.Schema({
   },
   content: [
     {
-      title: String,
-      movies: [
-        {
-          type: mongoose.Types.ObjectId,
-          ref: 'Movie'
-        }
-      ]
+      type: mongoose.Types.ObjectId,
+      ref: 'Movie'
     }
   ]
 })
