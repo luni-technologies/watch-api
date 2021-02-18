@@ -33,7 +33,14 @@ router.post('/addWatching/:id', (req, res) => {
       })
     }
 
-    User.updateOne({_id: req.user._id}, {'content.watching': req.user.content.watching}, (err, resp) => {
+    if (req.user.content['watch_history'][req.user.content['watch_history'].length - 1].movie !== mongoose.Types.ObjectId(movie._id)) {
+      req.user.content['watch_history'].push({
+        movie: mongoose.Types.ObjectId(movie._id),
+        at: new Date()
+      })
+    }
+
+    User.updateOne({_id: req.user._id}, {content: req.user.content}, (err, resp) => {
       if (err) return res.json({url: req.url, status: 'error', msg: 'Error updating user progress', error: err})
       res.json({url: req.url, status: 'success', msg: 'Set current progress', data: req.body.currentTime})
     })
