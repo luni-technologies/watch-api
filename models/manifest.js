@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const manifestSchema = new mongoose.Schema({
   publicid: String,
   media_type: String,
+  mediaId: String,
   mediaTitle: String,
   video: {
     src: String,

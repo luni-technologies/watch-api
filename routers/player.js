@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 
 const Movie = require('../models/movie')
 const User = require('../models/user')
+const Manifest = require('../models/manifest')
 
 router.get('/getWatching/:id', (req, res) => {
   Movie.findOne({publicid: req.params.id}, (err, movie) => {
@@ -44,6 +45,14 @@ router.post('/addWatching/:id', (req, res) => {
       if (err) return res.json({url: req.url, status: 'error', msg: 'Error updating user progress', error: err})
       res.json({url: req.url, status: 'success', msg: 'Set current progress', data: req.body.currentTime})
     })
+  })
+})
+
+router.get('/getManifest/:id', (req, res) => {
+  Manifest.findOne({mediaId: req.params.id}, (err, manifest) => {
+    if (err) return res.json({url: req.url, status: 'error', msg: 'Error finding manifest', error: err})
+    if (!manifest) return res.json({url: req.url, status: 'fail', msg: 'No manifest found with id'})
+    res.json({url: req.url, status: 'success', msg: 'Found manifest', data: manifest})
   })
 })
 
