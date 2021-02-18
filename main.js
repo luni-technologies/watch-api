@@ -26,6 +26,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', require('./routers/auth'))
 app.use('/api/movie', verifyToken, require('./routers/movie'))
+app.use('/api/player', verifyToken, require('./routers/player'))
 
 app.listen(8080, () => {
   console.log('API is listening on PORT 8080...')
