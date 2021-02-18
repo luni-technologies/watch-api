@@ -56,4 +56,15 @@ router.get('/getManifest/:id', (req, res) => {
   })
 })
 
+router.get('/getPrefs/', (req, res) => {
+  res.json({url: req.url, status: 'success', msg: 'Found preferances', data: req.user.prefs})
+})
+
+router.post('/setPref/', (req, res) => {
+  User.updateOne({_id: req.user._id}, {prefs: JSON.parse(req.body.userPrefs)}, (err, resp) => {
+    if (err) return res.json({url: req.url, status: 'error', msg: 'Error updating user prefs', error: err})
+    res.json({url: req.url, status: 'success', msg: 'Updated user prefs', data: req.body.userPrefs})
+  })
+})
+
 module.exports = router
