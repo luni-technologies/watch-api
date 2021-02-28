@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
     age: {
       born_on: Date
     },
+    isAdmin: Boolean,
     joined_at: Date
   },
   auth: {
@@ -64,7 +65,8 @@ const userSchema = new mongoose.Schema({
     ]
   },
   prefs: {
-    subtitle: String
+    subtitle: String,
+    timeType: String
   }
 })
 
