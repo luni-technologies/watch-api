@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
   res.send('Hello world')
 })
 
-app.use('/api/admin', require('./routers/admin'))
+app.use('/api/admin', verifyToken, verifyAdmin, require('./routers/admin'))
 app.use('/api/auth', require('./routers/auth'))
 app.use('/api/movie', verifyToken, require('./routers/movie'))
 app.use('/api/player', verifyToken, require('./routers/player'))
