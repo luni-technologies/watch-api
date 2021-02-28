@@ -16,6 +16,7 @@ mongoose.connect(process.env.MONGO_URL.replace('USER', process.env.MONGO_USER).r
 })
 
 const verifyToken = require('./middleware/verifyToken')
+const verifyAdmin = require('./middleware/verifyAdmin')
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
@@ -24,6 +25,7 @@ app.get('/', (req, res) => {
   res.send('Hello world')
 })
 
+app.use('/api/admin', require('./routers/admin'))
 app.use('/api/auth', require('./routers/auth'))
 app.use('/api/movie', verifyToken, require('./routers/movie'))
 app.use('/api/player', verifyToken, require('./routers/player'))
