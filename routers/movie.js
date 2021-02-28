@@ -16,7 +16,7 @@ function addDays(originDate, days) {
 
 router.get('/findById/:id', (req, res) => {
   Movie.findOne({publicid:req.params.id})
-    .populate([{path:'meta.genres'},{path:'meta.age_rating'},{path:'cast.person'}])
+    .populate([{path:'cast.person'}])
     .then(movie => {
       res.json({url: req.url, status: 'success', msg: 'Successfully found a movie', movie})
     })
@@ -24,9 +24,17 @@ router.get('/findById/:id', (req, res) => {
 
 router.get('/findByUrl/:url', (req, res) => {
   Movie.findOne({url:req.params.url})
-    .populate([{path:'meta.genres'},{path:'meta.age_rating'},{path:'cast.person'}])
+    .populate([{path:'cast.person'}])
     .then(movie => {
       res.json({url: req.url, status: 'success', msg: 'Successfully found a movie', movie})
+    })
+})
+
+router.get('/findByQuery/:query', (req, res) => {
+  Movie.find(req.params.query)
+    .populate([{path:'cast.person'}])
+    .then(movies => { 
+      res.json({url: req.url, status: 'success', msg: 'Successfully found movies', movies})
     })
 })
 
