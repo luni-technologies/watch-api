@@ -5,6 +5,9 @@ const mongoose = require('mongoose')
 
 require('dotenv').config()
 
+const Movie = require('./models/movie')
+const Person = require('./models/person')
+
 mongoose.connect(process.env.MONGO_URL.replace('USER', process.env.MONGO_USER).replace('PASS', process.env.MONGO_PASS), {
   useNewUrlParser: true,
   useUnifiedTopology: true,
