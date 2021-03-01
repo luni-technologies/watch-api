@@ -64,7 +64,7 @@ router.post('/login', (req, res) => {
         process.env.JWT_SECRET
       )
 
-      res.header('auth-token', token).json({url: req.url, status: 'success', msg: 'Successful login', data: token})
+      res.header('auth-token', token).json({url: req.url, status: 'success', msg: 'Successful login', data: {token, user}})
     })
   })
 })
