@@ -31,7 +31,7 @@ router.get('/findByUrl/:url', (req, res) => {
 })
 
 router.get('/findByQuery/:query', (req, res) => {
-  Movie.find(req.params.query)
+  Movie.find(JSON.parse(req.params.query))
     .populate([{path:'cast.person'}])
     .then(movies => { 
       res.json({url: req.url, status: 'success', msg: 'Successfully found movies', movies})
