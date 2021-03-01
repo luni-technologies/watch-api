@@ -73,8 +73,14 @@ const userSchema = new mongoose.Schema({
     ]
   },
   prefs: {
-    subtitle: String,
-    timeType: String
+    subtitle: {
+      type: String,
+      default: 'off'
+    },
+    timeType: {
+      type: String,
+      default: 'regular'
+    }
   }
 })
 

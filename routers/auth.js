@@ -22,18 +22,6 @@ router.post('/register', (req, res) => {
       },
       auth: {
         password: ''
-      },
-      content: {
-        watching: [],
-        watch_history: [],
-        watched: [],
-        ratings: []
-      },
-      social: {
-        friends: []
-      },
-      prefs: {
-        subtitle: 'off'
       }
     }
     bcrypt.genSalt(10, (err, salt) => {
