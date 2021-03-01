@@ -16,6 +16,14 @@ const userSchema = new mongoose.Schema({
     password: String
   },
   content: {
+    watchlist: [
+      {
+        movie: {
+          type: mongoose.Types.ObjectId,
+          ref: 'Movie'
+        }
+      }
+    ],
     watching: [
       {
         movie: {
