@@ -1,6 +1,11 @@
 const express = require('express')
 const router = express.Router()
 
+const uuid = require('uuid')
+
+const Movie = require('../models/movie')
+const Manifest = require('../models/manifest')
+
 router.get('/pingAdmin', (req, res) => {
   res.json({url: req.url, status: 'success', msg: 'Pong'})
 })
