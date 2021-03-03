@@ -21,6 +21,8 @@ mongoose.connect(process.env.MONGO_URL.replace('USER', process.env.MONGO_USER).r
 const verifyToken = require('./middleware/verifyToken')
 const verifyAdmin = require('./middleware/verifyAdmin')
 
+app.use(require('cors')())
+
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
