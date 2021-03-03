@@ -7,16 +7,20 @@ const User = require('../models/user')
 const Manifest = require('../models/manifest')
 
 router.get('/getWatching/:id', (req, res) => {
-  Movie.findOne({publicid: req.params.id}, (err, movie) => {
-    if (err) return res.json({url: req.url, status: 'error', msg: 'Error finding movie', error: err})
-    if (!movie) return res.json({url: req.url, status: 'fail', msg: 'No movie found with id'})
-    let sendTime = 0
-    let foundWatching = req.user.content.watching.find(x => x.movie === mongoose.Types.ObjectId(movie._id))
-    if (foundWatching) {
-      sendTime = foundWatching.time
-    }
+  User.findOne({_id: req.user._id}, (err, user) => {
+    if (err) return res.json({url: req.url, status: 'error', msg: 'Error finding user', error: err})
+    if (!user) return res.json({url: req.url, status: 'fail', msg: 'No user found'})
+    Movie.findOne({publicid: req.params.id}, (err, movie) => {
+      if (err) return res.json({url: req.url, status: 'error', msg: 'Error finding movie', error: err})
+      if (!movie) return res.json({url: req.url, status: 'fail', msg: 'No movie found with id'})
+      let sendTime = 0
+      let foundWatching = user.content.watching.find(x => x.movie.toString() == movie._id)
+      if (foundWatching) {
+        sendTime = foundWatching.time
+      }
 
-    res.json({url: req.url, status: 'success', msg: 'Found current progress', data: sendTime})
+      res.json({url: req.url, status: 'success', msg: 'Found current progress', data: sendTime})
+    })
   })
 })
 
@@ -30,11 +34,11 @@ router.post('/addWatching/:id', (req, res) => {
     } else {
       req.user.content.watching.push({
         movie: mongoose.Types.ObjectId(movie._id),
-        time: req.body.currentTime
+        time: req.body.time
       })
     }
 
-    if (req.user.content['watch_history'][req.user.content['watch_history'].length - 1].movie !== mongoose.Types.ObjectId(movie._id)) {
+    if (req.user.content['watch_history'].length === 0 || req.user.content['watch_history'][req.user.content['watch_history'].length - 1].movie !== mongoose.Types.ObjectId(movie._id)) {
       req.user.content['watch_history'].push({
         movie: mongoose.Types.ObjectId(movie._id),
         at: new Date()
