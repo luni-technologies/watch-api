@@ -21,4 +21,14 @@ router.post('/addToWatchlist/:id', (req, res) => {
   })
 })
 
+router.get('/getAllWatching/', (req, res) => {
+  User.findOne({_id: req.user._id})
+    .populate('content.watching.movie')
+    .exec((err, user) => {
+      if (err) return res.json({url: req.url, status: 'error', msg: 'Error finding user', error: err})
+      if (!user) return res.json({url: req.url, status: 'fail', msg: 'No user found'})
+      res.json({url: req.url, status: 'success', msg: 'Found user\'s watching', data: user.content.watching})
+    })
+})
+
 module.exports = router

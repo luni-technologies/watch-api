@@ -28,7 +28,7 @@ router.post('/addWatching/:id', (req, res) => {
   Movie.findOne({publicid: req.params.id}, (err, movie) => {
     if (err) return res.json({url: req.url, status: 'error', msg: 'Error finding movie', error: err})
     if (!movie) return res.json({url: req.url, status: 'fail', msg: 'No movie found with id'})
-    let foundWatching = req.user.content.watching.find(x => x.movie === mongoose.Types.ObjectId(movie._id))
+    let foundWatching = req.user.content.watching.find(x => x.movie.toString() === movie._id)
     if (foundWatching) {
       foundWatching.time = req.body.currentTime
     } else {
