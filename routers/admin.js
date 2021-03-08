@@ -1,10 +1,19 @@
 const express = require('express')
 const router = express.Router()
-
+const axios = require('axios').default
+const cheerio = require('cheerio')
 const uuid = require('uuid')
+const ObjectId = require('mongoose').Types.ObjectId
 
 const Movie = require('../models/movie')
 const Manifest = require('../models/manifest')
+const Person = require('../models/person')
+
+function addDays(originDate, days) {
+  var date = new Date(originDate.valueOf())
+  date.setDate(date.getDate() + days)
+  return date
+}
 
 router.get('/pingAdmin', (req, res) => {
   res.json({url: req.url, status: 'success', msg: 'Pong'})
@@ -50,7 +59,14 @@ router.post('/autoFind', async (req, res) => {
     },
     cast: []
   }
-  res.json({url: req.url, status: 'success', msg: 'Auto found title on iMDB', data: movieObj})
+
+  let newMovie = new Movie(movieObj)
+  newMovie.save().then(() => {
+    console.log(movieObj.url + ' - saved')
+    res.json({url: req.url, status: 'success', msg: 'Saved new title', data: movieObj})
+  }).catch(e => {
+    res.json({url: req.url, status: 'error', msg: 'Error saving new title', error: e})
+  })
 })
 
 router.post('/create', (req, res) => {
