@@ -1,12 +1,8 @@
 const express = require('express')
 const app = express()
-const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
 require('dotenv').config()
-
-const Movie = require('./models/movie')
-const Person = require('./models/person')
 
 mongoose.connect(process.env.MONGO_URL.replace('USER', process.env.MONGO_USER).replace('PASS', process.env.MONGO_PASS), {
   useNewUrlParser: true,
@@ -22,9 +18,10 @@ const verifyToken = require('./middleware/verifyToken')
 const verifyAdmin = require('./middleware/verifyAdmin')
 
 app.use(require('cors')())
+app.use(require('morgan')('short'))
 
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json())
+app.use(express.urlencoded({extended: false}))
+app.use(express.json())
 
 app.get('/', (req, res) => {
   res.send('Hello world')
