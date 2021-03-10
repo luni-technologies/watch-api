@@ -52,6 +52,23 @@ router.post('/addWatching/:id', (req, res) => {
   })
 })
 
+router.post('/addWatched/:id', (req, res) => {
+  Movie.findOne({publicid: req.params.id}, (err, content) => {
+    const index = req.user.content.watching.indexOf(req.user.content.watching.find(x => x.content == mongoose.Types.ObjectId(content._id)))
+    req.user.content.watching.splice(index, 1)
+
+    if (!req.user.content.watched.includes(content._id)) {
+      req.user.content.watched.push(content._id)
+
+      User.updateOne({_id: req.user._id}, {'content': req.user.content}, (err,raw) => {
+        res.json({url: req.url, status: 'success', msg: 'Saved movie to watched', data: req.user.content})
+      })
+    } else {
+      res.json({url: req.url, status: 'success', msg: 'Saved movie to watched', data: req.user.content})
+    }
+  })
+})
+
 router.get('/getManifest/:id', (req, res) => {
   Manifest.findOne({mediaId: req.params.id}, (err, manifest) => {
     if (err) return res.json({url: req.url, status: 'error', msg: 'Error finding manifest', error: err})
