@@ -6,7 +6,10 @@ const manifestSchema = new mongoose.Schema({
   mediaId: String,
   mediaTitle: String,
   video: {
-    src: String,
+    src: {
+      m3u8: String,
+      mp4: String
+    },
     lang: String,
     skips: [
       {
